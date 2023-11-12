@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id            String    @id @default(nanoid(10))
+  firstname     String
+  lastname      String
+  email         String    @unique
+  password      String
+  phone         String
+  refresh_token String?   @db.LongText
+  address       Address[]
+  carts         Cart[]
+}
+
+model Address {
+  id           Int    @id @default(autoincrement())
+  recipient    String
+  province     String
+  city         String
+  district     String
+  postal_code  Int
+  full_address String @db.MediumText
+  userId       String
+  user         Users  @relation(fields: [userId], references: [id])
+}
+
+model Cart {
+  id        Int            @id @default(autoincrement())
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  userId    String         @unique
+  user      Users          @relation(fields: [userId], references: [id])
+  items     HistoryItems[]
+}
+
+model HistoryItems {
+  id       Int    @id @default(autoincrement())
+  quantity Int
+  bookId   String
+  cartId   Int
+  cart     Cart   @relation(fields: [cartId], references: [id])
+  book     Books  @relation(fields: [bookId], references: [id])
+}
+
+model Books {
+  id          String         @id @default(nanoid(5))
+  title       String
+  pages       Int
+  published   String
+  weight      Float
+  width       Float
+  price       Int
+  rating      Float
+  purchased   Int?
+  views       Int?
+  description String         @db.LongText
+  author      Author[]
+  publisher   Publisher[]
+  category    Category[]
+  cover       BooksCover[]
+  cart        HistoryItems[]
+}
+
+model BooksCover {
+  id     Int    @id @default(autoincrement())
+  cover  String @db.MediumText
+  bookId String
+  book   Books  @relation(fields: [bookId], references: [id])
+}
+
+model Category {
+  id    Int     @id @default(autoincrement())
+  name  String
+  books Books[]
+}
+
+model Author {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  books Books[]
+}
+
+model Publisher {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  books Books[]
+}
