@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { ProductProvider } from './utils/context/ProductContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ErrorPage from './pages/404';
@@ -11,7 +12,6 @@ import Search from './pages/Search';
 import RequireAuth from './utils/services/RequireAuth';
 import ProtectRoute from './utils/services/ProtectRoute';
 import Loading from './components/elements/body/modals/Loading';
-import { ProductProvider } from './utils/context/productContext';
 
 function App() {
     return (

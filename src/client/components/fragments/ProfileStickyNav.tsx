@@ -1,4 +1,5 @@
 import ProfileContext from '@/utils/context/ProfileContext';
+import useLogout from '@/utils/hooks/useLogout';
 import { useContext } from 'react';
 
 const ProfileStickyNav = () => {
@@ -28,7 +29,9 @@ const ProfileStickyNav = () => {
                         </button>
                     </li>
                     <li className="p-3 text-lg mt-6 bg-transparent">
-                        <button className="btn btn-ghost hover:btn-error">Keluar</button>
+                        <button className="btn btn-ghost hover:btn-error" onClick={useLogout}>
+                            Keluar
+                        </button>
                     </li>
                 </ul>
             </div>

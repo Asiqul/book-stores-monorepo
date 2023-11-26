@@ -15,20 +15,25 @@ model Users {
   password      String
   phone         String
   refresh_token String?   @db.LongText
+  main_address  Int?      @unique
   address       Address[]
   carts         Cart[]
 }
 
 model Address {
-  id           Int    @id @default(autoincrement())
+  id           Int            @id @default(autoincrement())
+  label        String         @default("Rumah")
   recipient    String
+  provinceId   Int            @default(0)
   province     String
+  cityId       Int            @default(0)
   city         String
   district     String
   postal_code  Int
-  full_address String @db.MediumText
+  full_address String         @db.MediumText
   userId       String
-  user         Users  @relation(fields: [userId], references: [id])
+  user         Users          @relation(fields: [userId], references: [id])
+  HistoryItems HistoryItems[]
 }
 
 model Cart {
@@ -41,19 +46,21 @@ model Cart {
 }
 
 model HistoryItems {
-  id       Int    @id @default(autoincrement())
-  quantity Int
-  bookId   String
-  cartId   Int
-  cart     Cart   @relation(fields: [cartId], references: [id])
-  book     Books  @relation(fields: [bookId], references: [id])
+  id        Int     @id @default(autoincrement())
+  quantity  Int
+  addressId Int
+  bookId    String
+  cartId    Int
+  address   Address @relation(fields: [addressId], references: [id])
+  cart      Cart    @relation(fields: [cartId], references: [id])
+  book      Books   @relation(fields: [bookId], references: [id])
 }
 
 model Books {
   id          String         @id @default(nanoid(5))
   title       String
   pages       Int
-  published   String
+  publish     DateTime?      @db.Timestamp(0)
   weight      Float
   width       Float
   price       Int

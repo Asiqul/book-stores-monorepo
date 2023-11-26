@@ -1,4 +1,9 @@
-const FilterFormSide = () => {
+type CategoriesTypesProps = {
+    id: number;
+    name: string;
+};
+
+const FilterFormSide = ({ categories }: { categories: CategoriesTypesProps[] | undefined }) => {
     return (
         <>
             <div className="card hidden lg:block sticky top-28 left-0 w-[35%] bg-white h-[30rem]">
@@ -9,12 +14,14 @@ const FilterFormSide = () => {
                             <div className="pt-3">
                                 <select
                                     className="select select-bordered w-full border-border font-normal bg-white"
-                                    defaultValue={'Buku'}
+                                    defaultValue={'Kategori'}
                                 >
-                                    <option disabled>Buku</option>
-                                    <option>Komik Fiksi</option>
-                                    <option>Novel</option>
-                                    <option>Nonfiksi Dewasa</option>
+                                    <option disabled>Kategori</option>
+                                    {categories?.map((category) => (
+                                        <option key={category.id} value={category.name}>
+                                            {category.name}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
                             <div className="pt-2">

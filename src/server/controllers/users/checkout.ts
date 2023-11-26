@@ -2,7 +2,7 @@ import prisma from '../../db/connection';
 import { Request, Response } from 'express';
 
 const checkout = async (req: Request, res: Response) => {
-    const { bookId, quantity } = req.body;
+    const { bookId, quantity, address } = req.body;
     const userId = req.body.user.id;
     try {
         const user = await prisma.users.findUnique({
@@ -45,6 +45,11 @@ const checkout = async (req: Request, res: Response) => {
                             id: bookId,
                         },
                     },
+                    address: {
+                        connect: {
+                            id: address,
+                        },
+                    },
                     quantity,
                 },
             });
@@ -53,6 +58,7 @@ const checkout = async (req: Request, res: Response) => {
                 where: {
                     bookId,
                     cartId: checkCart.id,
+                    addressId: address,
                 },
             });
             if (checkItem) {
@@ -75,6 +81,11 @@ const checkout = async (req: Request, res: Response) => {
                         book: {
                             connect: {
                                 id: bookId,
+                            },
+                        },
+                        address: {
+                            connect: {
+                                id: address,
                             },
                         },
                         quantity,

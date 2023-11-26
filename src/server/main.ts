@@ -6,6 +6,7 @@ import cors from 'cors';
 import bookRouters from './routes/books/route';
 import authRouter from './routes/auth/route';
 import usersRouter from './routes/users/route';
+import shippingRouter from './routes/shipment/route';
 
 const app = express();
 dotenv.config();
@@ -26,5 +27,6 @@ app.get('/api', (req, res) => {
 app.use('/auth/user', authRouter);
 app.use('/api/books', bookRouters);
 app.use('/api/user', usersRouter);
+app.use('/api/shipment', shippingRouter);
 
 ViteExpress.listen(app, 3000, () => console.log('Server is listening on port 3000...'));

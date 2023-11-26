@@ -9,7 +9,7 @@ const usersRouter = express.Router();
 
 usersRouter.get('/profile', verifyAccess, profile);
 usersRouter.get('/history', verifyAccess, history);
-usersRouter.get('/address', verifyAccess, address);
+usersRouter.get('/main-address', verifyAccess, address);
 
 usersRouter.post('/checkout', verifyAccess, checkout);
 

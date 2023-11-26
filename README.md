@@ -1,7 +1,6 @@
 
 # BukuKita - Books Stores
 
-
 A user-friendly bookstore website with a simple system for buyers.
 Buyers can choose the books they want to buy, then determine the number of books then make a payment and then the purchase history can be seen on the user's dashboard.
 
@@ -31,11 +30,13 @@ Install my-project with npm
 ```
     
 2. Installing package
+
 ```bash
   npm install
 ```
 
 3. Running project
+
 ```bash
   npm run dev
 ```

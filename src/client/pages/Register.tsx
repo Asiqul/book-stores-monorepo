@@ -28,7 +28,7 @@ const Register = () => {
         setIsLoading(true);
         setError('');
         try {
-            const response = await axios.post(
+            await axios.post(
                 '/auth/user/register',
                 {
                     firstname,

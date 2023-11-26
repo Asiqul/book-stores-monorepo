@@ -1,5 +1,5 @@
+import ProductContext from '../context/ProductContext';
 import { useContext } from 'react';
-import ProductContext from '../context/productContext';
 
 const useCounter = () => {
     const { quantity, setQuantity } = useContext(ProductContext);

@@ -22,6 +22,7 @@ const history = async (req: Request, res: Response) => {
                 },
                 select: {
                     quantity: true,
+
                     book: {
                         select: {
                             id: true,
@@ -31,6 +32,17 @@ const history = async (req: Request, res: Response) => {
                                     name: true,
                                 },
                             },
+                        },
+                    },
+                    address: {
+                        select: {
+                            id: true,
+                            recipient: true,
+                            province: true,
+                            city: true,
+                            district: true,
+                            postal_code: true,
+                            full_address: true,
                         },
                     },
                 },

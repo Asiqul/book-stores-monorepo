@@ -1,3 +1,4 @@
+import useLogout from '@/utils/hooks/useLogout';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
@@ -20,7 +21,10 @@ const Users = () => {
                                 <a>Settings</a>
                             </li>
                             <li className="my-1.5">
-                                <a className="btn btn-error btn-sm align-center place-content-center py-5 w-1/2">
+                                <a
+                                    className="btn btn-error btn-sm align-center place-content-center py-5 w-1/2"
+                                    onClick={useLogout}
+                                >
                                     Logout
                                 </a>
                             </li>
