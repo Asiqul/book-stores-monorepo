@@ -1,4 +1,4 @@
-import ProductContext from '@/utils/context/productContext';
+import ProductContext from '@/utils/context/ProductContext';
 import { useContext } from 'react';
 
 const ProductNavButton = () => {

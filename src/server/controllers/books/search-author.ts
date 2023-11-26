@@ -16,7 +16,7 @@ const searchAuthor = async (props: SearchProps) => {
             },
         });
 
-        const books = await prisma.books.findMany({
+        const bookSearch = await prisma.books.findMany({
             skip: offset,
             take: props.limit,
             where: {
@@ -46,11 +46,28 @@ const searchAuthor = async (props: SearchProps) => {
                 },
             },
         });
+
+        const catSearch = await prisma.category.findMany({
+            where: {
+                books: {
+                    some: {
+                        author: {
+                            some: {
+                                name: {
+                                    contains: props.query,
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+
         if (total_count === 0) {
-            return books === null;
+            return bookSearch === null;
         }
         const page_count = Math.ceil(total_count / props.limit);
-        return { books, total_count, page_count };
+        return { bookSearch, catSearch, total_count, page_count };
     } catch (error) {
         throw error;
     }

@@ -54,6 +54,7 @@ export interface BaseFormProps {
     opt?: boolean;
     value?: string;
     disable?: boolean;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface BookViewProps {

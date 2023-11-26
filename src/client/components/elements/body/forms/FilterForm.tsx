@@ -18,7 +18,7 @@ const FilterForm = ({ open, onClick }: { open: boolean; onClick: () => void }) =
                                     className="select select-bordered w-full border-border font-normal bg-white"
                                     defaultValue={'Buku'}
                                 >
-                                    <option disabled>Buku</option>
+                                    <option disabled>Kategory</option>
                                     <option>Komik Fiksi</option>
                                     <option>Novel</option>
                                     <option>Nonfiksi Dewasa</option>

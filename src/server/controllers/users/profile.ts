@@ -13,8 +13,10 @@ const profile = async (req: Request, res: Response) => {
                 lastname: true,
                 email: true,
                 phone: true,
+                main_address: true,
                 address: {
                     select: {
+                        id: true,
                         recipient: true,
                         province: true,
                         city: true,

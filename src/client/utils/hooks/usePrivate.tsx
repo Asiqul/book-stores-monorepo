@@ -3,7 +3,7 @@ import { axiosPrivate } from '../services/axiosInstance';
 import { AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
 
-const usePrivate = <T,>(url: string) => {
+const usePrivate = <T,>(url: string, options?: any) => {
     const [data, setData] = useState<T | null>(null);
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(false);

@@ -3,26 +3,30 @@ import FilterFormSide from '@/components/elements/body/cards/FilterFormSide';
 import FilterNav from '@/components/fragments/FilterNav';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import useTitle from '@/utils/hooks/useTitle';
-import useFetch from '@/utils/hooks/useFetch';
 import { useSearchParams } from 'react-router-dom';
+import useFetch from '@/utils/hooks/useFetch';
+import { BooksDataType, CategoryType } from '@/types/data.type';
 
 const Search = () => {
     useTitle('Cari Buku');
 
     const [newQuery] = useSearchParams();
-    const search = newQuery.get('q');
-    const based_on = newQuery.get('based_on');
+    const search = newQuery.get('q') || '';
+    const based_on = newQuery.get('based_on') || '';
     const limit = newQuery.get('limit');
     const page = newQuery.get('page');
 
-    const result = useFetch<any>(`/api/books/search?q=${search}&based_on=${based_on}&limit=${limit}&page=${page}`);
+    const result = useFetch<{ message: string; books: BooksDataType[]; categories: CategoryType[] }>(
+        `/api/books/search?q=${search}&based_on=${based_on}&limit=${limit}&page=${page}`
+    );
     const books = result.data?.books;
+    const category = result.data?.categories;
 
     return (
         <>
             <BaseLayout>
                 <div className="container mx-auto lg:flex gap-2 relative">
-                    <FilterFormSide />
+                    <FilterFormSide categories={category} />
 
                     <div>
                         <div className="container mx-auto px-2  flex flex-col md:flex-row md:justify-around gap-6 md:gap-4">

@@ -14,12 +14,14 @@ const Dashboard = () => {
     useTitle('Dashboard');
     const [profile, setProfile] = useState<UserProfileType | null>(null);
     const [address, setAddress] = useState<UserAddressType | null>(null);
+    const [mainAddress, setMainAddress] = useState<Number | null>(null);
 
     const { data, isLoading } = usePrivate<{ message: string; data: UserProfileType }>('/api/user/profile');
 
     useEffect(() => {
         if (data?.data) {
             setAddress(data.data.address);
+            setMainAddress(data.data.main_address);
             setProfile(data.data);
         }
     }, [data]);
@@ -37,7 +39,7 @@ const Dashboard = () => {
                             <div className="md:w-full">
                                 <ProfileNavButton />
                                 <UserProfileCard profile={profile} />
-                                <ProfileAddress address={address || []} />
+                                <ProfileAddress address={address || []} mainAddress={mainAddress} />
                                 <OrderList history={[]} />
                             </div>
                             <ProfileStickyNav />
