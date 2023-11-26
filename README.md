@@ -1,7 +1,9 @@
+
 # BukuKita - Books Stores
 
 A user-friendly bookstore website with a simple system for buyers.
 Buyers can choose the books they want to buy, then determine the number of books then make a payment and then the purchase history can be seen on the user's dashboard.
+
 
 ## Build With
 
@@ -9,22 +11,24 @@ Buyers can choose the books they want to buy, then determine the number of books
 
 **Server:** Node, Express, PrismaORM, MySQL
 
+
 ## Features
 
--   User authentications
--   Interactive UI
--   Fully compatible with allround screen width
+- User authentications
+- Interactive UI
+- Fully compatible with allround screen width
+
+
 
 ## Installation
 
-Install BukuKita - Books Store with npm
+Install my-project with npm
 
 1. Clone the repo
-
 ```bash
   git clone https://github.com/Asiqul/book-stores-monorepo.git
 ```
-
+    
 2. Installing package
 
 ```bash
@@ -50,3 +54,4 @@ To run this project, you will need to add the following environment variables to
 `ACCESS_TOKEN_KEY`
 
 `REFRESH_TOKEN_KEY`
+
