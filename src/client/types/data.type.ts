@@ -1,3 +1,4 @@
+import { type } from 'os';
 import { SetStateAction } from 'react';
 
 export type UserAddressType = {
@@ -41,4 +42,16 @@ export type BooksDataType = {
     cover: {
         cover: string;
     }[];
+};
+
+type CostType = {
+    value: number;
+    etd: string;
+    note: string;
+};
+
+export type ShipmentCostType = {
+    service: string;
+    description: string;
+    cost: CostType[];
 };
