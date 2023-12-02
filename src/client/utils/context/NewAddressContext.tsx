@@ -55,13 +55,13 @@ export const NewAddressProvider = ({ children }: { children: React.ReactNode }) 
     const [district, setDistrict] = useState<string>();
     const [postalCode, setPostalCode] = useState<string>();
     const [fullAddress, setFullAddress] = useState<string>();
-    const [isCompleted, setIsCompleted] = useState(false);
+    const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
     useEffect(() => {
         if (label && recipient && city && district && postalCode && fullAddress) {
             setIsCompleted(true);
         }
-    }, [recipient, city, district, postalCode, fullAddress]);
+    }, [label, recipient, city, district, postalCode, fullAddress]);
 
     return (
         <NewAddressContext.Provider

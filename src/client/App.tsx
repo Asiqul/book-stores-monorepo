@@ -6,12 +6,12 @@ import Register from './pages/Register';
 import ErrorPage from './pages/404';
 import Dashboard from './pages/Dashboard';
 import Checkout from './pages/Checkout';
-const Homepage = lazy(() => import('./pages/Homepage'));
-const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 import Search from './pages/Search';
 import RequireAuth from './utils/services/RequireAuth';
 import ProtectRoute from './utils/services/ProtectRoute';
 import Loading from './components/elements/body/modals/Loading';
+const Homepage = lazy(() => import('./pages/Homepage'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 
 function App() {
     return (
@@ -28,7 +28,7 @@ function App() {
                 </Route>
                 <Route path="/search" element={<Search />} />
                 <Route
-                    path="/product-detail/:bookId"
+                    path="/product/:bookId"
                     element={
                         <ProductProvider>
                             <ProductDetail />
