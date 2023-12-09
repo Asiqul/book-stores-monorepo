@@ -19,21 +19,24 @@ const Homepage = () => {
         <>
             <BaseLayout>
                 <Banner />
-                <MinBookView books={recommendBooks.data?.books} title="Rekomendasi Untukmu" />
+                <MinBookView books={recommendBooks.data?.books} title="Rekomendasi Untukmu" keyword="recommendations" />
                 <BookView
                     books={popularBooks.data?.books}
                     title="Buku-Buku Populer"
                     banner="/banners/buku-populer.png"
+                    keyword="populars"
                 />
                 <BookView
                     books={favouritesBooks.data?.books}
                     title="Buku Terlaris"
                     banner="/banners/fiksi-favorit.png"
+                    keyword="best-seller"
                 />
                 <BookView
                     books={internasionalBooks.data?.books}
                     title="Buku Internasional"
                     banner="/banners/buku-internasional.png"
+                    keyword="international"
                 />
                 <Brands />
                 <Blogs />

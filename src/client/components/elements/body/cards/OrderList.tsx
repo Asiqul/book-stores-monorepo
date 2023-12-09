@@ -25,7 +25,7 @@ const OrderList: React.FC<OrderListProps> = ({ history }) => {
                             Kamu belum pernah berbelanja.
                         </h2>
                         <p className="text-center my-4 bg-transparent">
-                            Kamu masih belum bisa berbelanja, ayo segera tambahkan alamatmu dan mulai belanja!
+                            Kamu masih belum pernah berbelanja, ayo segera tambahkan alamatmu dan mulai belanja!
                         </p>
                     </div>
                 </>
@@ -37,7 +37,7 @@ const OrderList: React.FC<OrderListProps> = ({ history }) => {
                             className="px-2 py-3 bg-border bg-opacity-10 rounded-lg text-sm md:text-base"
                         >
                             <li className="font-semibold text-md text-tertiary mb-2">
-                                <Link to={`/product-detail/${item.book.id}`}>{item.book.title}</Link>
+                                <Link to={`/product/${item.book.id}`}>{item.book.title}</Link>
                             </li>
 
                             <li>{'Jumlah : ' + item.quantity}</li>

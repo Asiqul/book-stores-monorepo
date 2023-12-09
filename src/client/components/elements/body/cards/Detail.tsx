@@ -1,4 +1,15 @@
-const Detail = ({ book }: { book: any }) => {
+import { Books } from '@prisma/client';
+import moment from 'moment';
+
+interface BooksDetails extends Books {
+    publisher: {
+        id: number;
+        name: string;
+    }[];
+}
+
+const Detail = ({ book }: { book: BooksDetails }) => {
+    console.log(book);
     return (
         <>
             <div className="flex flex-row my-3 bg-transparent">
@@ -9,7 +20,7 @@ const Detail = ({ book }: { book: any }) => {
                     </li>
                     <li className="grid grid-cols-1 bg-transparent">
                         <span className="text-heading font-semibold text-sm text-border">Terbit</span>
-                        <span>{book?.published}</span>
+                        <span>{moment(book?.publish).format('DD MMM YYYY')}</span>
                     </li>
                     <li className="grid grid-cols-1 bg-transparent">
                         <span className="text-heading font-semibold text-sm text-border">Bahasa</span>

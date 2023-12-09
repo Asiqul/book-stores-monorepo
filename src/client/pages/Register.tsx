@@ -3,12 +3,13 @@ import AuthForm from '@/components/elements/auth/AuthForm';
 import AuthTitle from '@/components/elements/auth/AuthTitle';
 import FacebookButton from '@/components/elements/auth/FacebookButton';
 import GoogleButton from '@/components/elements/auth/GoogleButton';
+import ToastWrapper from '@/components/elements/body/toast/ToastWrapper';
 import MinLayout from '@/components/layouts/MinLayout';
 import useTitle from '@/utils/hooks/useTitle';
 import axios from '@/utils/services/axiosInstance';
 import { SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     useTitle('Registrasi');
@@ -21,12 +22,10 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [confPassword, setConfPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
 
     const handleRegister = async (e: SyntheticEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        setError('');
         try {
             await axios.post(
                 '/auth/user/register',
@@ -44,32 +43,21 @@ const Register = () => {
             );
             navigate('/login');
         } catch (err: any) {
-            toast.error(err.response.data.message);
-            setError(err.response.data.message);
+            toast.error(err.response.data.message, {
+                onClose: () => {
+                    navigate(0);
+                },
+            });
             setIsLoading(false);
         }
     };
 
     return (
         <MinLayout>
+            <ToastWrapper />
             <div className="container mx-auto my-4 md:w-1/2 xl:w-1/3">
                 <form onSubmit={handleRegister}>
                     <AuthTitle title="Daftar" />
-                    {error && (
-                        <ToastContainer
-                            className="mt-10 lg:mt-20 -z-10"
-                            position="top-center"
-                            autoClose={1500}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                            theme="light"
-                        />
-                    )}
                     <AuthForm
                         name="firstname"
                         type="text"

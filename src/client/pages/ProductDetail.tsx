@@ -7,6 +7,7 @@ import BaseLayout from '@/components/layouts/BaseLayout';
 import useFetch from '@/utils/hooks/useFetch';
 import useCounter from '@/utils/hooks/useCounter';
 import MinBookView from '@/components/fragments/MinBookView';
+import useTitle from '@/utils/hooks/useTitle';
 import { useEffect, useRef } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -47,6 +48,8 @@ const ProductDetail = () => {
         localStorage.setItem('session_book', JSON.stringify(inputCart));
     }, [inputCart]);
 
+    useTitle(book.data?.title);
+
     return (
         <div ref={ref}>
             <BaseLayout>
@@ -60,11 +63,16 @@ const ProductDetail = () => {
                         </div>
                         <CheckoutBar price={book.data?.price} />
                     </div>
-                    <MinBookView books={recommendBooks.data?.books} title="Rekomendasi Untukmu" />
+                    <MinBookView
+                        books={recommendBooks.data?.books}
+                        title="Rekomendasi Untukmu"
+                        keyword="recommendations"
+                    />
                     <MinBookView
                         books={otherBooks.data?.books}
                         title="Produk Lainnya"
                         background="bg-cards_wrapper rounded-xl"
+                        keyword="best-seller"
                     />
                 </div>
             </BaseLayout>

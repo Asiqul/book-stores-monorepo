@@ -1,4 +1,4 @@
-import ProductContext from '@/utils/context/productContext';
+import ProductContext from '@/utils/context/ProductContext';
 import { useContext } from 'react';
 import { IconContext } from 'react-icons';
 import { BiSolidMinusCircle } from 'react-icons/bi';
