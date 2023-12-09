@@ -4,9 +4,10 @@ import React, { useContext } from 'react';
 
 interface ProfileAddressProps {
     address: UserAddressType | [];
+    mainAddress: Number | null;
 }
 
-const ProfileAddress: React.FC<ProfileAddressProps> = ({ address }) => {
+const ProfileAddress: React.FC<ProfileAddressProps> = ({ address, mainAddress }) => {
     const addressesToShow = Array.isArray(address) ? address : ([] as UserAddressType[]);
 
     const { isActive } = useContext(ProfileContext);
@@ -41,17 +42,24 @@ const ProfileAddress: React.FC<ProfileAddressProps> = ({ address }) => {
                     </>
                 ) : (
                     <ul className="w-full px-3 py-6 -mt-8 flex flex-col gap-4 bg-transparent">
-                        {addressesToShow?.map((item: any, index: number) => (
-                            <div
-                                key={index}
-                                className="px-2 py-3 bg-border bg-opacity-10 rounded-lg text-sm md:text-base"
-                            >
-                                <li className="font-semibold text-lg text-tertiary mb-2">{item.recipient}</li>
-                                <li>{item.district + ' ' + item.postal_code}</li>
-                                <li>{item.city + ' - ' + item.province}</li>
-                                <li>{item.full_address}</li>
-                            </div>
-                        ))}
+                        {addressesToShow?.map((item: any, index: number) => {
+                            return (
+                                <div
+                                    key={index}
+                                    className="px-2 py-3 bg-border bg-opacity-10 rounded-lg text-sm md:text-base shadow-md"
+                                >
+                                    <li className="flex justify-between font-semibold text-lg text-tertiary mb-2">
+                                        {item.recipient}{' '}
+                                        {mainAddress === item.id && (
+                                            <span className="badge badge-accent font-normal">Utama</span>
+                                        )}
+                                    </li>
+                                    <li>{item.district + ' ' + item.postal_code}</li>
+                                    <li>{item.city + ' - ' + item.province}</li>
+                                    <li>{item.full_address}</li>
+                                </div>
+                            );
+                        })}
                     </ul>
                 )}
             </div>

@@ -1,7 +1,17 @@
 import Title from './Title';
+import { CategoriesTypesProps } from '@/pages/Search';
 import { AiOutlineClose } from 'react-icons/ai';
+import { useSearchParams } from 'react-router-dom';
 
-const FilterForm = ({ open, onClick }: { open: boolean; onClick: () => void }) => {
+interface FilterFormTypes {
+    open: boolean;
+    onClick: () => void;
+    categories: CategoriesTypesProps[] | undefined;
+}
+
+const FilterForm: React.FC<FilterFormTypes> = ({ open, onClick, categories }) => {
+    const [newQuery] = useSearchParams();
+    const based_on = newQuery.get('based_on');
     return (
         <>
             <div className={`modal ${open ? 'modal-open' : ''}`}>
@@ -11,17 +21,19 @@ const FilterForm = ({ open, onClick }: { open: boolean; onClick: () => void }) =
                         <AiOutlineClose className="cursor-pointer" onClick={onClick} size={25} />
                     </div>
                     <div className="pl-3">
-                        <h3 className="font-semibold">Kategori</h3>
+                        <h3 className="font-semibold">Filter</h3>
                         <div className="">
-                            <div className="pt-3">
+                            <div className={`${based_on === 'category' ? 'hidden' : 'block'} pt-3`}>
                                 <select
                                     className="select select-bordered w-full border-border font-normal bg-white"
-                                    defaultValue={'Buku'}
+                                    defaultValue={'Kategori'}
                                 >
-                                    <option disabled>Kategory</option>
-                                    <option>Komik Fiksi</option>
-                                    <option>Novel</option>
-                                    <option>Nonfiksi Dewasa</option>
+                                    <option disabled>Kategori</option>
+                                    {categories?.map((category) => (
+                                        <option key={category.id} value={category.name}>
+                                            {category.name}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
                             <div className="pt-2">

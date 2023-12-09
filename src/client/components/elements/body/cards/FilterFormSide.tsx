@@ -1,17 +1,17 @@
-type CategoriesTypesProps = {
-    id: number;
-    name: string;
-};
+import { CategoriesTypesProps } from '@/pages/Search';
+import { useSearchParams } from 'react-router-dom';
 
 const FilterFormSide = ({ categories }: { categories: CategoriesTypesProps[] | undefined }) => {
+    const [newQuery] = useSearchParams();
+    const based_on = newQuery.get('based_on');
     return (
         <>
             <div className="card hidden lg:block sticky top-28 left-0 w-[35%] bg-white h-[30rem]">
                 <div className="card-body">
                     <div className="pl-3">
-                        <h3 className="font-semibold">Kategori</h3>
+                        <h3 className="font-semibold">Filter</h3>
                         <div className="">
-                            <div className="pt-3">
+                            <div className={`${based_on === 'category' ? 'hidden' : ''} pt-3`}>
                                 <select
                                     className="select select-bordered w-full border-border font-normal bg-white"
                                     defaultValue={'Kategori'}

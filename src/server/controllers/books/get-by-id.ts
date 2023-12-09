@@ -1,4 +1,4 @@
-import prisma from './../../db/connection';
+import prisma from '../../db/connection';
 import { Request, Response } from 'express';
 
 const bookById = async (req: Request, res: Response) => {

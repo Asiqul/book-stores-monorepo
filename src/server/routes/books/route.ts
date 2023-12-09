@@ -1,5 +1,5 @@
 import express from 'express';
-import bookById from '../../controllers/books/book-by-id';
+import bookById from '../../controllers/books/get-by-id';
 import search from '../../services/books/search';
 import recommendBooks from '../../services/books/recommendations';
 import populars from '../../services/books/populars';
