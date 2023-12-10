@@ -8,7 +8,7 @@ const BookCard = ({ id, image, alt, author, title, price, rating }: CardProps) =
     return (
         <>
             <a
-                href={`/product-detail/` + id}
+                href={`/product/` + id}
                 className="py-2 px-2 flex flex-col justify-center items-center bg-white rounded-xl h-[22rem] shadow-md"
             >
                 <div className="py-4 rounded-xl">

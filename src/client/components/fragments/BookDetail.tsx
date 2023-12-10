@@ -1,9 +1,9 @@
-import ProductContext from '@/utils/context/productContext';
-import { useContext } from 'react';
+import ProductContext from '@/utils/context/ProductContext';
 import Title from '../elements/body/cards/Title';
 import ProductNavButton from '../elements/body/buttons/ProductNavButton';
 import Description from '../elements/body/cards/Description';
 import Detail from '../elements/body/cards/Detail';
+import { useContext } from 'react';
 
 const BookDetail = ({ book }: any) => {
     const { isActive } = useContext(ProductContext);

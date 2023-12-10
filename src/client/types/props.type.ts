@@ -10,10 +10,11 @@ export interface CardProps {
     rating: number;
 }
 
-export interface SubtitleProps {
+export type SubtitleProps = {
     title: string;
     expand: boolean;
-}
+    keyword: string;
+};
 
 export interface AddressFormProps {
     type: string;
@@ -57,8 +58,9 @@ export interface BaseFormProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface BookViewProps {
+export type BookViewProps = {
     books: any;
     title: string;
     banner: string;
-}
+    keyword: string;
+};
