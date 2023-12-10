@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { SetStateAction } from 'react';
 
 export type UserAddressType = {
